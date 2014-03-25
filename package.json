@@ -1,0 +1,36 @@
+{
+  "name": "APPNAME",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "gulp test",
+    "start": "gulp start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com:meandev/mean"
+  },
+  "keywords": [
+    "mean",
+    "angular"
+  ],
+  "author": "Jeff Dickey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meandev/mean/issues"
+  },
+  "homepage": "https://github.com/meandev/mean",
+  "devDependencies": {
+    "gulp": "^3.5.6",
+    "gulp-jshint": "^1.5.1",
+    "gulp-nodemon": "^1.0.2",
+    "jshint-stylish": "^0.1.5",
+    "express": "^4.0.0",
+    "morgan": "^1.0.0",
+    "mime": "^1.2.11",
+    "static-favicon": "^1.0.2",
+    "ejs": "^1.0.0",
+    "lodash": "^2.4.1"
+  }
+}

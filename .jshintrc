@@ -1,0 +1,6 @@
+{
+  "node": true,
+  "strict": true,
+  "indent": 4,
+  "trailing": true
+}
