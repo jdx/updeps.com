@@ -6,7 +6,7 @@ var express = require('express'),
     app     = express();
 
 app.use(favicon());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/../public'));
 app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 
