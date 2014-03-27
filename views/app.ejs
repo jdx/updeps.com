@@ -8,10 +8,6 @@
   </head>
   <body>
     <h1><%= config.app.name %></h1>
-    <a href="/" ui-sref="home">State 1</a>
-    <a href="/2" ui-sref="contact-us">State 2</a>
-    <div ng-view></div>
-    <input ng-model="foo" />
-    <h1>{{foo}}</h1>
+    <div ui-view></div>
   </body>
 </html>

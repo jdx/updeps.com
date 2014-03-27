@@ -10,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('home', {
         url: '/',
-        templateUrl: 'templates/home.html',
+        templateUrl: 'partials/home.html',
         controller: function($scope) {
             $scope.items = ["a", "b"];
         }

@@ -20,6 +20,11 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
+gulp.task('partials', function() {
+    gulp.src('./frontend/partials/**/*.html')
+        .pipe(gulp.dest('public/partials'));
+});
+
 gulp.task('scripts', function() {
     browserify('./frontend/app.js')
         .bundle()
@@ -28,8 +33,9 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('watch', ['scripts'], function() {
+gulp.task('watch', ['partials', 'scripts'], function() {
     gulp.watch('frontend/**/*.js', ['scripts']);
+    gulp.watch('frontend/partials/**/*.html', ['partials']);
 });
 
 gulp.task('test', ['lint']);
