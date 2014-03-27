@@ -1,13 +1,17 @@
 <!DOCTYPE>
-<html ng-app>
+<html ng-app="app">
   <head>
     <title><%= config.app.name %></title>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.js"></script>
+    <script src="app.js"></script>
   </head>
   <body>
     <h1><%= config.app.name %></h1>
+    <a href="/" ui-sref="home">State 1</a>
+    <a href="/2" ui-sref="contact-us">State 2</a>
     <div ng-view></div>
-    <script src="app.js"></script>
+    <input ng-model="foo" />
+    <h1>{{foo}}</h1>
   </body>
 </html>

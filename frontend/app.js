@@ -3,13 +3,18 @@
 var angular = require('angular');
 var routes = require('./routes');
 
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ui.router']);
 
-app.config(function($routeProvider) {
-    $routeProvider
-    .when('/', {
+app.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+    .state('home', {
+        url: '/',
         templateUrl: 'templates/home.html',
-        controller: 'homeController'
+        controller: function($scope) {
+            $scope.items = ["a", "b"];
+        }
     });
+    console.log($stateProvider);
 });
 

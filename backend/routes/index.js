@@ -3,6 +3,6 @@ var express = require('express'),
 
 routes = express.Router();
 
-routes.get('/', home.index);
+routes.get('*', home.index);
 
 module.exports = routes;
