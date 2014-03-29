@@ -47,6 +47,7 @@ gulp.task('scripts', function() {
 
 gulp.task('watch', ['css', 'partials', 'scripts'], function() {
     gulp.watch('frontend/**/*.js', ['scripts']);
+    gulp.watch(jsFiles, ['lint']);
     gulp.watch('views/partials/**/*.html', ['partials']);
     gulp.watch('css/**/*.styl', ['css']);
     gulp.watch('public/init.js', ['minify']);

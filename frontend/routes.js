@@ -1,7 +1,10 @@
 'use strict';
 
-var app = require('./app');
+var _ = require('lodash'),
+    app = require('./app'),
+    config = require('../config');
 
+console.log(config);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
@@ -18,6 +21,12 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/contacts',
         templateUrl: 'partials/contacts.html',
         controller: 'ContactsController'
+    })
+    .state('github', {
+        url: '/github/register',
+        controller: function() {
+            window.location = 'https://github.com/login/oauth/authorize?client_id=%s' + config.github.clientId;
+        }
     });
 });
 
