@@ -49,6 +49,7 @@ gulp.task('watch', ['css', 'partials', 'scripts'], function() {
     gulp.watch('frontend/**/*.js', ['scripts']);
     gulp.watch('views/partials/**/*.html', ['partials']);
     gulp.watch('css/**/*.styl', ['css']);
+    gulp.watch('public/init.js', ['minify']);
     gulp.watch('public/**/*', function(event) {
         gulp.src(event.path).pipe(livereload());
     });
