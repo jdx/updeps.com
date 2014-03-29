@@ -1,10 +1,13 @@
 'use strict';
 
 var gulp = require('gulp'),
+    gutil = require('gulp-util'),
     nodemon = require('gulp-nodemon'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     rename = require('gulp-rename'),
+    stylus = require('gulp-stylus'),
+    livereload = require('gulp-livereload'),
     jshint = require('gulp-jshint');
 
 var jsFiles = [
@@ -21,27 +24,44 @@ gulp.task('lint', function() {
 });
 
 gulp.task('partials', function() {
-    gulp.src('./frontend/partials/**/*.html')
+    gulp.src('./views/partials/**/*.html')
         .pipe(gulp.dest('public/partials'));
 });
 
+gulp.task('css', function() {
+    gulp.src('./css/app.styl')
+        .pipe(stylus())
+        .pipe(gulp.dest('./public/'));
+});
+
 gulp.task('scripts', function() {
-    browserify('./frontend/app.js')
+    browserify('./frontend/init.js')
         .bundle()
-        .pipe(source('./frontend/app.js'))
-        .pipe(rename('app.js'))
+        .on('error', gutil.log)
+        .pipe(source('./frontend/init.js'))
+        .pipe(rename('init.js'))
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('watch', ['partials', 'scripts'], function() {
+gulp.task('watch', ['css', 'partials', 'scripts'], function() {
     gulp.watch('frontend/**/*.js', ['scripts']);
-    gulp.watch('frontend/partials/**/*.html', ['partials']);
+    gulp.watch('views/partials/**/*.html', ['partials']);
+    gulp.watch('css/**/*.styl', ['css']);
+    gulp.watch('public/**/*', function(event) {
+        gulp.src(event.path).pipe(livereload());
+    });
+});
+
+gulp.task('minify', ['css', 'scripts'], function() {
 });
 
 gulp.task('test', ['lint']);
 gulp.task('default', ['test']);
+gulp.task('build', ['lint', 'css', 'partials', 'scripts', 'minify']);
 
 gulp.task('start', ['lint', 'watch'], function() {
-    nodemon({script: 'backend/server.js', ext: 'js'})
+    nodemon({script: 'backend/server.js',
+            ext: 'js',
+            ignore: ['frontend', 'public']})
         .on('change', ['lint']);
 });

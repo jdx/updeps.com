@@ -1,8 +1,12 @@
+'use strict';
+
 var express = require('express'),
-    home    = require('../controllers/home');
+    controllers = require('../controllers');
 
-routes = express.Router();
+var app = express.Router();
 
-routes.get('*', home.index);
+app.use('/api', require('./api'));
 
-module.exports = routes;
+app.get('*', controllers.Home.index);
+
+module.exports = app;

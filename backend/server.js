@@ -1,17 +1,19 @@
 var express = require('express'),
-    morgan  = require('morgan'),
+    logger = require('./logger'),
     favicon = require('static-favicon'),
-    config  = require('../config'),
-    routes  = require('./routes'),
-    app     = express();
+    config = require('../config'),
+    routes = require('./routes'),
+    bodyParser = require('body-parser'),
+    app = express();
 
 app.use(favicon());
 app.use(express.static(__dirname + '/../public'));
-app.use(morgan('dev'));
-app.set('view engine', 'ejs');
-
+app.use(bodyParser());
+app.use(logger.RequestLogger);
 app.use(routes);
+app.use(logger.ErrorLogger);
+app.engine('html.ejs', require('ejs').renderFile);
+app.set('view engine', 'html.ejs');
 
 app.listen(config.port);
-console.log(config.app.name + ' listening on port: ' + config.port +
-            ' env: ' + config.env);
+logger.info('[%s] %s listening on port %d', config.app.name, config.appName, config.port);

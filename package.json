@@ -25,17 +25,15 @@
     "gulp-jshint": "^1.5.1",
     "gulp-nodemon": "^1.0.2",
     "jshint-stylish": "^0.1.5",
-    "express": "^4.0.0",
-    "morgan": "^1.0.0",
-    "mime": "^1.2.11",
     "static-favicon": "^1.0.2",
-    "ejs": "^1.0.0",
-    "lodash": "^2.4.1",
     "gulp-browserify": "^0.5.0",
     "browserify": "^3.33.0",
     "browserify-shim": "^3.3.2",
     "vinyl-source-stream": "^0.1.1",
-    "gulp-rename": "^1.2.0"
+    "gulp-rename": "^1.2.0",
+    "gulp-stylus": "^0.1.0",
+    "gulp-livereload": "^1.2.0",
+    "gulp-util": "^2.2.14"
   },
   "browserify": {
     "transform": [
@@ -43,6 +41,16 @@
     ]
   },
   "browserify-shim": {
-    "angular": "global:angular"
+    "angular": "global:angular",
+    "lodash": "global:_"
+  },
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "lodash": "^2.4.1",
+    "express": "^4.0.0",
+    "mongoose": "^3.8.8",
+    "express-winston": "^0.2.5",
+    "winston": "^0.7.3",
+    "body-parser": "^1.0.1"
   }
 }

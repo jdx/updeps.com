@@ -1,20 +1,11 @@
 'use strict';
-
 var angular = require('angular');
-var routes = require('./routes');
 
-var app = angular.module('app', ['ui.router']);
+var app = angular.module('app', ['ui.router', 'restangular']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
-    $stateProvider
-    .state('home', {
-        url: '/',
-        templateUrl: 'partials/home.html',
-        controller: function($scope) {
-            $scope.items = ["a", "b"];
-        }
-    });
-    console.log($stateProvider);
+app.config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('/api');
+    RestangularProvider.setRestangularFields({ id: "_id" });
 });
 
+module.exports = app;

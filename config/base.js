@@ -7,5 +7,13 @@ module.exports = {
     port: 3000,
     app: {
         name: pkg.name
+    },
+    assets: {
+        minify: true
+    },
+    db: {
+        mongo: {
+            uri: 'mongodb://localhost/contacts'
+        }
     }
 };
