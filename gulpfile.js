@@ -8,6 +8,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     stylus = require('gulp-stylus'),
     livereload = require('gulp-livereload'),
+    ngmin = require('gulp-ngmin'),
+    uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint');
 
 var jsFiles = [
@@ -53,6 +55,11 @@ gulp.task('watch', ['css', 'partials', 'scripts'], function() {
 });
 
 gulp.task('minify', ['css', 'scripts'], function() {
+    gulp.src('public/init.js')
+        .pipe(ngmin())
+        .pipe(uglify())
+        .pipe(rename('init.min.js'))
+        .pipe(gulp.dest('public'));
 });
 
 gulp.task('test', ['lint']);

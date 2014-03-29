@@ -2,6 +2,6 @@
 
 module.exports = {
     assets: {
-        minify: true
+        minify: false
     }
 };
