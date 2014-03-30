@@ -6,7 +6,7 @@ var _ = require('lodash'),
     expressWinston = require('express-winston'),
     config = require('../config');
 
-fs.mkdir('logs', function() {});
+fs.mkdir('logs', function () {});
 logger.add(logger.transports.File, { filename: _.template('logs/<%= env %>.log', { env: config.env })});
 
 logger.ErrorLogger = expressWinston.errorLogger({

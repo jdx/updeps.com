@@ -35,7 +35,9 @@
     "gulp-livereload": "^1.2.0",
     "gulp-util": "^2.2.14",
     "gulp-ngmin": "^0.1.2",
-    "gulp-uglify": "^0.2.1"
+    "gulp-uglify": "^0.2.1",
+    "lodash": "^2.4.1",
+    "gulp-cached": "0.0.3"
   },
   "browserify": {
     "transform": [
@@ -44,7 +46,8 @@
   },
   "browserify-shim": {
     "angular": "global:angular",
-    "lodash": "global:_"
+    "lodash": "global:_",
+    "config": "global:config"
   },
   "dependencies": {
     "ejs": "^1.0.0",
@@ -53,6 +56,7 @@
     "mongoose": "^3.8.8",
     "express-winston": "^0.2.5",
     "winston": "^0.7.3",
-    "body-parser": "^1.0.1"
+    "body-parser": "^1.0.1",
+    "compression": "^1.0.1"
   }
 }

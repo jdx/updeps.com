@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     ngmin = require('gulp-ngmin'),
     uglify = require('gulp-uglify'),
+    cache = require('gulp-cached'),
     jshint = require('gulp-jshint');
 
 var jsFiles = [
@@ -21,6 +22,7 @@ var jsFiles = [
 
 gulp.task('lint', function() {
     gulp.src(jsFiles)
+        .pipe(cache('linting'))
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
@@ -37,40 +39,38 @@ gulp.task('css', function() {
 });
 
 gulp.task('scripts', function() {
-    browserify('./frontend/init.js')
+    browserify('./frontend/app.js')
         .bundle()
         .on('error', gutil.log)
-        .pipe(source('./frontend/init.js'))
-        .pipe(rename('init.js'))
+        .pipe(source('./frontend/app.js'))
+        .pipe(rename('app.js'))
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('watch', ['css', 'partials', 'scripts'], function() {
+gulp.task('watch', function() {
     gulp.watch('frontend/**/*.js', ['scripts']);
     gulp.watch(jsFiles, ['lint']);
     gulp.watch('views/partials/**/*.html', ['partials']);
     gulp.watch('css/**/*.styl', ['css']);
-    gulp.watch('public/init.js', ['minify']);
-    gulp.watch('public/**/*', function(event) {
+    gulp.watch(['public/**/*.js', 'public/**/*.html', 'public/**/*.css'], function(event) {
         gulp.src(event.path).pipe(livereload());
     });
 });
 
-gulp.task('minify', ['css', 'scripts'], function() {
-    gulp.src('public/init.js')
+gulp.task('minify', ['scripts'], function() {
+    gulp.src('public/app.js')
         .pipe(ngmin())
         .pipe(uglify())
-        .pipe(rename('init.min.js'))
+        .pipe(rename('app.min.js'))
         .pipe(gulp.dest('public'));
 });
 
 gulp.task('test', ['lint']);
 gulp.task('default', ['test']);
-gulp.task('build', ['lint', 'css', 'partials', 'scripts', 'minify']);
+gulp.task('build', ['lint', 'partials', 'css', 'scripts', 'minify']);
 
-gulp.task('start', ['lint', 'watch'], function() {
+gulp.task('start', ['lint', 'build', 'watch'], function() {
     nodemon({script: 'backend/server.js',
             ext: 'js',
-            ignore: ['frontend', 'public']})
-        .on('change', ['lint']);
+            ignore: ['frontend', 'public']});
 });

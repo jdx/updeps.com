@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('lodash'),
-    app = require('../app');
+var app = require('../app');
 
 module.exports = app.controller('ContactsController', function($scope, Restangular) {
     $scope.contacts = Restangular.all('contacts').getList().$object;

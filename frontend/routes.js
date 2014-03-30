@@ -1,10 +1,8 @@
 'use strict';
 
-var _ = require('lodash'),
-    app = require('./app'),
-    config = require('../config');
+var app = require('./app'),
+    config = require('config');
 
-console.log(config);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
@@ -25,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('github', {
         url: '/github/register',
         controller: function() {
-            window.location = 'https://github.com/login/oauth/authorize?client_id=%s' + config.github.clientId;
+            window.location = 'https://github.com/login/oauth/authorize?client_id=' + config.github.clientId;
         }
     });
 });

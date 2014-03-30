@@ -4,12 +4,14 @@ var express = require('express'),
     config = require('../config'),
     routes = require('./routes'),
     bodyParser = require('body-parser'),
+    compression = require('compression'),
     app = express();
 
+app.use(compression());
+app.use(logger.RequestLogger);
 app.use(favicon());
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser());
-app.use(logger.RequestLogger);
 app.use(routes);
 app.use(logger.ErrorLogger);
 app.engine('html.ejs', require('ejs').renderFile);
