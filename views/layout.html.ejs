@@ -38,7 +38,7 @@
           <li ng-if='user.github' ui-sref-active='active'><a ui-sref='repos'>Repos</a></li>
         </ul>
         <ul class='nav navbar-nav navbar-right'>
-          <li ng-if='user.github' ui-sref-active='active'><a ui-sref='profile({login: user.github.login})'>{{ user.github.login }}</a></li>
+          <li ng-if='user.github' ui-sref-active='active'><a ui-sref='profile({github: user.github.login})'>{{ user.github.login }}</a></li>
           <li ng-if='!user.github' ui-sref-active='active'><a ui-sref='github'>Sign In with GitHub</a></li>
         </ul>
       </div>
