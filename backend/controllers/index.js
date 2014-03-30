@@ -1,3 +1,3 @@
 exports.Home = require('./home');
 exports.Github = require('./github');
-exports.Contacts = require('./contacts');
+exports.Examples = require('./examples');

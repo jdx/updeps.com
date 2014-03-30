@@ -1,15 +1,16 @@
 'use strict';
 
-var angular = require('angular');
-
-var app = angular.module('app', ['ui.router', 'restangular']);
+window.app = require('angular').module('app', [
+    'ui.router',
+    'restangular',
+    'ngCookies'
+]);
 
 app.config(function(RestangularProvider) {
     RestangularProvider.setBaseUrl('/api');
     RestangularProvider.setRestangularFields({ id: '_id' });
 });
 
-module.exports = app;
-
 require('./routes');
 require('./controllers');
+require('./services');

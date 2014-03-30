@@ -35,6 +35,7 @@ gulp.task('partials', function() {
 gulp.task('css', function() {
     gulp.src('./css/app.styl')
         .pipe(stylus())
+        .on('error', gutil.log)
         .pipe(gulp.dest('./public/'));
 });
 

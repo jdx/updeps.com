@@ -1,3 +1,3 @@
 'use strict';
 
-exports.Contact = require('./contact');
+exports.Example = require('./example');

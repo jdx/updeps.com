@@ -4,6 +4,7 @@ module.exports = {
     env: process.env.NODE_ENV || 'development',
     port: 3000,
     app: { name: pkg.name },
+    secretToken: '72387438743874',
     assets: { minify: true },
     db: {
         mongo: { uri: 'mongodb://localhost/contacts' }

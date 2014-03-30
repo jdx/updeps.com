@@ -4,16 +4,17 @@ var express = require('express'),
     config = require('../config'),
     routes = require('./routes'),
     bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
     compression = require('compression'),
     app = express();
 
 app.use(compression());
-app.use(logger.RequestLogger);
 app.use(favicon());
 app.use(express.static(__dirname + '/../public'));
+app.use(logger.requestLogger);
+app.use(cookieParser(config.secretToken));
 app.use(bodyParser());
 app.use(routes);
-app.use(logger.ErrorLogger);
 app.engine('html.ejs', require('ejs').renderFile);
 app.set('view engine', 'html.ejs');
 

@@ -28,6 +28,8 @@
     "unused": true,
     "globals": {
         "require": false,
-        "module": false
+        "module": false,
+        "console": false,
+        "app": false
     }
 }

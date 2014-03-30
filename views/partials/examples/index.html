@@ -1,0 +1,14 @@
+<h2>Examples</h2>
+
+<p>
+  <a ui-sref='examples-new({github: user.github.login})' class='btn btn-info btn-lg'>New Example</a>
+</p>
+
+<ul class='list-group'>
+  <li class='list-group-item' ng-repeat='example in examples'>
+  <a ui-sref='example({github: user.github.login, slug: example.slug})'>
+    <h4 class='list-group-item-heading'>{{example.title}}</h4>
+    <p class='list-group-item-text'>{{example.description}}</p>
+  </a>
+  </li>
+</ul>
