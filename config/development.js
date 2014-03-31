@@ -1,3 +1,4 @@
 module.exports = {
-    assets: { minify: false }
+    assets: { minify: false },
+    github: { name: 'updeps.dev' }
 };

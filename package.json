@@ -46,6 +46,7 @@
     "winston": "^0.7.3",
     "request": "^2.34.0",
     "prettyjson": "^1.0.0",
-    "highlight.js": "^8.0.0"
+    "highlight.js": "^8.0.0",
+    "jwt-simple": "^0.2.0"
   }
 }

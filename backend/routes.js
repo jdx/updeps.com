@@ -6,6 +6,8 @@ var express = require('express'),
 var app = express.Router()
     , api = express.Router();
 
+api.post('/user', controllers.User.getJwt);
+
 api.post('/github/oauth', controllers.Github.oauth);
 
 api.route('/examples')
