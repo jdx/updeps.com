@@ -12,20 +12,31 @@ exports.index = function(req, res, next) {
 
 exports.show = function(req, res, next) {
     models.Example.findOne({
-        slug: req.query.slug
+        slug: req.params.id
     }, function(err, example) {
+        if (err) { next(err); }
+        if (example) { res.json(example); }
+        else { res.send(404); }
+    });
+};
+
+exports.create = function(req, res, next) {
+    new models.Example({
+        title: req.body.title,
+        body: req.body.body,
+        slug: slugify(req.body.title)
+    }).save(function(err, example) {
         if (err) { next(err); }
         res.json(example);
     });
 };
 
-exports.create = function(req, res, next) {
-    var example = new models.Example({
+exports.update = function(req, res, next) {
+    models.Example.findByIdAndUpdate(req.params.id, {
         title: req.body.title,
         body: req.body.body,
         slug: slugify(req.body.title)
-    });
-    example.save(function(err, example) {
+    }, function(err, example) {
         if (err) { next(err); }
         res.json(example);
     });

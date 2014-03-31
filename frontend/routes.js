@@ -15,11 +15,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: '/partials/examples/index.html',
         controller: 'ExamplesController'
     })
-    .state('examples-new', {
-        url: '/:github/examples/new',
-        templateUrl: '/partials/examples/new.html',
-        controller: 'NewExampleController'
-    })
     .state('example', {
         url: '/:github/examples/:slug',
         templateUrl: '/partials/examples/show.html',
@@ -37,8 +32,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('github', {
         url: '/github/register',
-        controller: function() {
-            window.location = 'https://github.com/login/oauth/authorize?client_id=' + config.github.clientId;
+        controller: function($window) {
+            $window.location.href = 'https://github.com/login/oauth/authorize?client_id=' + config.github.clientId;
         }
     })
     .state('profile', {

@@ -14,3 +14,4 @@ app.config(function(RestangularProvider) {
 require('./routes');
 require('./controllers');
 require('./services');
+require('./directives');

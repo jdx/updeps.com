@@ -3,13 +3,27 @@
 app.service('ExampleService', function($http) {
     return {
         create: function(example) {
-            return $http.post('/api/examples', example);
+            return $http.post('/api/examples', {
+                title: example.title,
+                body: example.body
+            });
         },
-        allForGithub: function() {
+        all: function() {
             return $http.get('/api/examples');
         },
-        one: function(github, slug) {
+        one: function(slug) {
             return $http.get('/api/examples/' + slug);
+        },
+        update: function(example) {
+            var body = {
+                title: example.title,
+                body: example.body
+            };
+            if (example._id) {
+                return $http.put('/api/examples/' + example._id, body);
+            } else {
+                return $http.post('/api/examples', body);
+            }
         }
     };
 });
