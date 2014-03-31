@@ -1,7 +1,8 @@
 'use strict';
 
-app.controller('ExamplesController', function($scope, $state, ExampleService) {
-    ExampleService.all().success(function(examples) {
+angular.module('app.controllers').
+    controller('ExamplesController', function($scope, exampleService) {
+    exampleService.all().success(function(examples) {
         $scope.examples = examples;
     });
 });

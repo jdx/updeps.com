@@ -1,8 +1,15 @@
 'use strict';
 
-app.service('GithubService', function($http, $cookies) {
-    var headers = { 'Authorization': 'token ' + $cookies.github_auth_token };
+angular.module('app.services').
+    service('githubService', function($http, localStorage) {
+    var headers = { 'Authorization': 'token ' + localStorage.githubAccessToken };
     return {
+        isAuthenticated: function() {
+            return !!localStorage.githubAccessToken;
+        },
+        authenticate: function(code) {
+            return $http.post('/api/github/oauth', { code: code });
+        },
         findUser: function(login) {
             return $http.get('https://api.github.com/users/' + login, { cache: true, headers: headers });
         },

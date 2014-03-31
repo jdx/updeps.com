@@ -1,9 +1,12 @@
 'use strict';
 
 var express = require('express'),
-    controllers = require('../controllers');
+    controllers = require('./controllers');
 
-var api = express.Router();
+var app = express.Router()
+    , api = express.Router();
+
+api.post('/github/oauth', controllers.Github.oauth);
 
 api.route('/examples')
   .get(controllers.Examples.index)
@@ -13,4 +16,8 @@ api.route('/examples/:id')
   .get(controllers.Examples.show)
   .put(controllers.Examples.update);
 
-module.exports = api;
+app.use('/api', api);
+
+app.get('*', controllers.Home.index);
+
+module.exports = app;

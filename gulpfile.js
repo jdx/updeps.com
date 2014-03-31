@@ -1,59 +1,72 @@
 'use strict';
 
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    nodemon = require('gulp-nodemon'),
-    browserify = require('browserify'),
-    source = require('vinyl-source-stream'),
-    rename = require('gulp-rename'),
-    stylus = require('gulp-stylus'),
-    livereload = require('gulp-livereload'),
-    ngmin = require('gulp-ngmin'),
-    uglify = require('gulp-uglify'),
-    cache = require('gulp-cached'),
-    jshint = require('gulp-jshint');
+var _ = require('lodash')
+    , gulp = require('gulp')
+    , gutil = require('gulp-util')
+    , nodemon = require('gulp-nodemon')
+    , rename = require('gulp-rename')
+    , stylus = require('gulp-stylus')
+    , livereload = require('gulp-livereload')
+    , ngmin = require('gulp-ngmin')
+    , uglify = require('gulp-uglify')
+    , cache = require('gulp-cached')
+    , concat = require('gulp-concat')
+    , jshint = require('gulp-jshint');
 
-var jsFiles = [
-    'gulpfile.js',
-    'backend/**/*.js',
-    'frontend/**/*.js',
-    'config/**/*.js'
-];
+var paths = {
+    css: 'css/app.styl',
+    lint: ['**/*.js', '!node_modules/**', '!public/**', '!vendor/**'],
+    views: ['views/**/*.html'],
+    scripts: {
+        'app.js': 'frontend/app.js',
+        'routes.js': 'frontend/routes.js',
+        'controllers.js': 'frontend/controllers/**/*.js',
+        'directives.js': 'frontend/directives/**/*.js',
+        'filters.js': 'frontend/filters/**/*.js',
+        'services.js': 'frontend/services/**/*.js'
+    }
+};
 
 gulp.task('lint', function() {
-    gulp.src(jsFiles)
+    gulp.src(paths.lint)
         .pipe(cache('linting'))
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('partials', function() {
-    gulp.src('./views/partials/**/*.html')
-        .pipe(gulp.dest('public/partials'));
+gulp.task('vendor', function() {
+    gulp.src('vendor/**/*')
+        .pipe(gulp.dest('public/vendor'));
+});
+
+gulp.task('views', function() {
+    gulp.src(paths.views)
+        .pipe(gulp.dest('public/views'));
 });
 
 gulp.task('css', function() {
-    gulp.src('./css/app.styl')
+    gulp.src(paths.css)
         .pipe(stylus())
         .on('error', gutil.log)
-        .pipe(gulp.dest('./public/'));
+        .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('scripts', function() {
-    browserify('./frontend/app.js')
-        .bundle()
-        .on('error', gutil.log)
-        .pipe(source('./frontend/app.js'))
-        .pipe(rename('app.js'))
-        .pipe(gulp.dest('public'));
+    _.each(paths.scripts, function(paths, file) {
+        gulp.src(paths)
+            .pipe(concat(file))
+            .pipe(gulp.dest('public/js'));
+    });
 });
 
 gulp.task('watch', function() {
-    gulp.watch('frontend/**/*.js', ['scripts']);
-    gulp.watch(jsFiles, ['lint']);
-    gulp.watch('views/partials/**/*.html', ['partials']);
-    gulp.watch('css/**/*.styl', ['css']);
-    gulp.watch(['public/**/*.js', 'public/**/*.html', 'public/**/*.css'], function(event) {
+    _.forOwn(paths.scripts, function(paths) {
+        gulp.watch(paths, ['scripts']);
+    });
+    gulp.watch(paths.lint, ['lint']);
+    gulp.watch(paths.views, ['views']);
+    gulp.watch(paths.css, ['css']);
+    gulp.watch('public/**/*', function(event) {
         gulp.src(event.path).pipe(livereload());
     });
 });
@@ -63,14 +76,14 @@ gulp.task('minify', ['scripts'], function() {
         .pipe(ngmin())
         .pipe(uglify())
         .pipe(rename('app.min.js'))
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('test', ['lint']);
-gulp.task('default', ['test']);
-gulp.task('build', ['lint', 'partials', 'css', 'scripts', 'minify']);
+gulp.task('default', ['test', 'build']);
+gulp.task('build', ['lint', 'vendor', 'views', 'css', 'scripts', 'minify']);
 
-gulp.task('start', ['lint', 'build', 'watch'], function() {
+gulp.task('server', ['lint', 'build', 'watch'], function() {
     nodemon({script: 'backend/server.js',
             ext: 'js',
             ignore: ['frontend', 'public']});

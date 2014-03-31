@@ -1,7 +1,8 @@
 'use strict';
 
-app.controller('ReposController', function($scope, GithubService) {
-    GithubService.repositories().success(function(repositories) {
+angular.module('app.controllers').
+    controller('ReposController', function($scope, githubService) {
+    githubService.repositories().success(function(repositories) {
         $scope.repos = repositories;
     });
 });

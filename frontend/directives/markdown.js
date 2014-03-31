@@ -1,9 +1,7 @@
 'use strict';
 
-var _ = require('lodash'),
-    highlightjs = require('highlight.js');
-
-app.directive('markdown', function() {
+angular.module('app.directives').
+    directive('markdown', function() {
     return {
         restrict: 'A',
         require: '?ngModel',
@@ -13,7 +11,7 @@ app.directive('markdown', function() {
             ngModel.$render = _.throttle(function() {
                 var text, html;
                 text = ngModel.$viewValue || '';
-                html = highlightjs.highlight('markdown', text).value;
+                html = markdown.toHTML(text);
                 element.html(html);
             }, 150);
         }

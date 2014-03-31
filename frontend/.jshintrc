@@ -12,7 +12,7 @@
     "evil": true,
     "forin": false,
     "immed": true,
-    "laxbreak": false,
+    "laxcomma": true,
     "newcap": true,
     "noarg": true,
     "noempty": false,
@@ -27,9 +27,8 @@
     "globalstrict": true,
     "unused": true,
     "globals": {
-        "require": false,
-        "module": false,
-        "console": false,
-        "app": false
+        "_": false,
+        "angular": false,
+        "markdown": false
     }
 }

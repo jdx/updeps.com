@@ -3,9 +3,8 @@
 var config = require('../../config');
 
 exports.index = function (req, res, next) {
-    if (req.path.indexOf('/api') === 0 || req.path.indexOf('/partials') === 0) {
-        next();
-    } else {
+    if (req.path.indexOf('/api') === 0) { next(); }
+    else {
         res.render('layout', { config: config });
     }
 };

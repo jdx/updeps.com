@@ -1,6 +1,10 @@
 'use strict';
 
-app.controller('NavigationController', function($rootScope, GithubService) {
+angular.module('app.controllers').
+    controller('NavigationController', function(config, $rootScope, githubService) {
+    $rootScope.config = config;
     $rootScope.user = {};
-    GithubService.getCurrentUser().success(function(user) { $rootScope.user.github = user; });
+    if (githubService.isAuthenticated()) {
+        githubService.getCurrentUser().success(function(user) { $rootScope.user.github = user; });
+    }
 });

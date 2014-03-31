@@ -1,12 +1,12 @@
 <h2>Examples</h2>
 
 <p>
-  <a ui-sref='example({github: user.github.login, slug: "new"})' class='btn btn-info btn-lg'>New Example</a>
+  <a href='/{{user.github.login}}/examples/new' class='btn btn-info btn-lg'>New Example</a>
 </p>
 
 <ul class='list-group'>
   <li class='list-group-item' ng-repeat='example in examples'>
-  <a ui-sref='example({github: user.github.login, slug: example.slug})'>
+  <a href='/USERNAME/examples/{{example.slug}}'>
     <h4 class='list-group-item-heading'>{{example.title}}</h4>
     <p class='list-group-item-text'>{{example.description}}</p>
   </a>

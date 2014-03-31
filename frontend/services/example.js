@@ -1,6 +1,7 @@
 'use strict';
 
-app.service('ExampleService', function($http) {
+angular.module('app.services').
+    service('exampleService', function($http) {
     return {
         create: function(example) {
             return $http.post('/api/examples', {

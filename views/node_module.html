@@ -5,7 +5,7 @@
 <h4 ng-if='module.dependencies'>Dependencies</h4>
 <ul>
   <li ng-repeat='(k,v) in module.dependencies'>
-  <a ui-sref='node({name: k})'>{{k}}</a> {{v}}
+  <a href='/node/{{k}}'>{{k}}</a> {{v}}
   </li>
 </ul>
 <pre>
