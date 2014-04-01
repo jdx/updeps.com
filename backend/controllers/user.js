@@ -7,7 +7,8 @@ var config = require('../../config')
 
 exports.getJwt = function(req, res, next) {
     request.get({
-        url: 'https://api.github.com/users/dickeyxxx',
+        url: 'https://api.github.com/user',
+        json: true,
         headers: {
             'User-Agent': config.github.name,
             'Accept': 'application/vnd.github.v3+json',

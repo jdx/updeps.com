@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('app.controllers').
-    controller('NavigationController', function(config, $rootScope, githubService, authService) {
+    controller('NavigationController', function(config, $rootScope, githubService, authService, localStorage) {
+    $rootScope.jwt = localStorage.jwt;
     $rootScope.config = config;
     if (githubService.isAuthenticated()) {
         $rootScope.githubAccessToken = githubService.accessToken();
@@ -12,8 +13,9 @@ angular.module('app.controllers').
     $rootScope.$watch('githubAccessToken', function(token) {
         if(token) {
             authService.jwtFromGithub(token).success(function(jwt) {
-                console.log(jwt);
+                localStorage.jwt = jwt;
                 $rootScope.jwt = jwt;
+                $rootScope.user = {};
             });
         }
     });

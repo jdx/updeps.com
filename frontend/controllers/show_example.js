@@ -11,7 +11,7 @@ angular.module('app.controllers').
     $scope.updated = _.debounce(function(example) {
         if(example.title) {
             exampleService.update(example).success(function(example) {
-                $location.path('/USERNAME/examples/' + example.slug);
+                $location.path('/examples/' + example.slug);
             });
         }
     }, 1000, {maxWait: 10000});

@@ -1,11 +1,12 @@
-var express = require('express'),
-    logger = require('./logger'),
-    favicon = require('static-favicon'),
-    config = require('../config'),
-    routes = require('./routes'),
-    bodyParser = require('body-parser'),
-    compression = require('compression'),
-    app = express();
+var express = require('express')
+    , logger = require('./logger')
+    , favicon = require('static-favicon')
+    , config = require('../config')
+    , routes = require('./routes')
+    , bodyParser = require('body-parser')
+    , compression = require('compression')
+    , prettyjson = require('prettyjson')
+    , app = express();
 
 app.use(compression());
 app.use(favicon());

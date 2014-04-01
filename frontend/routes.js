@@ -15,11 +15,11 @@ angular.module('app').
         template: '',
         controller: 'GithubController'
     })
-    .when('/:github/examples', {
+    .when('/examples', {
         templateUrl: '/views/examples/index.html',
         controller: 'ExamplesController'
     })
-    .when('/:github/examples/:slug', {
+    .when('/examples/:slug', {
         templateUrl: '/views/examples/show.html',
         controller: 'ShowExampleController'
     })
@@ -27,8 +27,12 @@ angular.module('app').
         templateUrl: '/views/repos.html',
         controller: 'ReposController'
     })
+    .when('/node', {
+        templateUrl: '/views/node/index.html',
+        controller: 'NodeController'
+    })
     .when('/node/:name', {
-        templateUrl: '/views/node_module.html',
+        templateUrl: '/views/node/show.html',
         controller: 'NodeModulesController'
     })
     .when('/:github', {
