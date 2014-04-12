@@ -1,44 +1,32 @@
 {
-  "name": "updeps",
-  "version": "0.0.1",
-  "description": "",
+  "name": "APPNAME",
+  "version": "0.0.0",
+  "description": "built with the MEAN framework",
+  "private": true,
   "scripts": {
     "test": "gulp test",
-    "start": "gulp start"
+    "start": "gulp",
+    "postinstall": "./node_modules/gulp/bin/gulp.js build"
   },
-  "repository": {
-    "type": "git",
-    "url": "github.com:meandev/mean"
+  "author": "AUTHORNAME",
+  "engines": {
+    "node": "0.10.x"
   },
-  "keywords": [
-    "mean",
-    "angular"
-  ],
-  "author": "Jeff Dickey",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/meandev/mean/issues"
-  },
-  "homepage": "https://github.com/meandev/mean",
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.5.6",
     "gulp-jshint": "^1.5.1",
     "gulp-nodemon": "^1.0.2",
-    "jshint-stylish": "^0.1.5",
-    "static-favicon": "^1.0.2",
-    "gulp-rename": "^1.2.0",
     "gulp-stylus": "^0.1.0",
     "gulp-livereload": "^1.2.0",
     "gulp-util": "^2.2.14",
     "gulp-ngmin": "^0.1.2",
     "gulp-uglify": "^0.2.1",
     "lodash": "^2.4.1",
-    "gulp-cached": "0.0.3",
-    "gulp-concat": "^2.2.0"
-  },
-  "dependencies": {
+    "gulp-concat": "^2.2.0",
+    "gulp-rev": "^0.3.2",
+    "gulp-docco": "0.0.3",
+    "static-favicon": "^1.0.2",
     "ejs": "^1.0.0",
-    "lodash": "^2.4.1",
     "express": "^4.0.0",
     "mongoose": "^3.8.8",
     "body-parser": "^1.0.1",
@@ -46,7 +34,7 @@
     "winston": "^0.7.3",
     "request": "^2.34.0",
     "prettyjson": "^1.0.0",
-    "highlight.js": "^8.0.0",
-    "jwt-simple": "^0.2.0"
+    "forever": "^0.10.11",
+    "prerender-node": "^1.0.1"
   }
 }

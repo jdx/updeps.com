@@ -1,4 +1,8 @@
+//# Development config
+//
+// Config used when running locally.
+// Inherits from [base config](base.html).
+
 module.exports = {
-    assets: { minify: false },
-    github: { name: 'updeps.dev' }
+    assets: { cache: false, minify: false }
 };
