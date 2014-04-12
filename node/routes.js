@@ -32,6 +32,9 @@ var app = express.Router();
 // Mount the API routes
 app.use('/api/v1', api);
 
+app.get('/github', controllers.github.redirect);
+app.get('/github/callback', controllers.github.callback);
+
 // If no route matches default to showing the [angular app](../angular/app.html).
 app.get('*', function (req, res) { res.render('../layout'); });
 

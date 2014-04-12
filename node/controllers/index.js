@@ -7,6 +7,8 @@
 // exports.users = require('./users');
 // ```
 
+exports.github = require('./github');
+
 
 // Show API endpoint index
 exports.index = function(req, res) {

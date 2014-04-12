@@ -21,9 +21,16 @@ module.exports = {
     // Name for app, used in [header](../../angular/partials/header.html).
     app: pkg.name,
 
+    secret: process.env.SECRET_KEY || 'changeme',
+
     // Default to cache and minify assets
     // Caching happens in [node](../node/server.html), minification in [gulpfile.js](../gulpfile.html)
     assets: { cache: true, minify: true },
+
+    github: {
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET
+    },
 
     // config that will be sent to the browser for use in Angular
     public: {

@@ -12,6 +12,10 @@ angular.module('app').
         templateUrl: '/partials/home.html',
         controller: 'HomeController'
     })
+    .when('/login', {
+        template: '',
+        controller: 'LoginController'
+    })
 
     // default route
     .otherwise({redirectTo: '/'});
