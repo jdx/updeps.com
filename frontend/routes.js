@@ -35,6 +35,10 @@ angular.module('app').
         templateUrl: '/views/node/show.html',
         controller: 'NodeModulesController'
     })
+    .when('/gh', {
+        templateUrl: '/views/gh.html',
+        controller: 'GHController'
+    })
     .when('/:github', {
         templateUrl: '/views/profile.html',
         controller: 'ProfilesController'

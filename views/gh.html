@@ -1,0 +1,12 @@
+<form>
+  <div class='form-group'>
+    <label>curl</label>
+    <input ng-model='curl' class='form-control' />
+  </div>
+  <input type='submit' ng-click='run(curl)' value='run' />
+</form>
+
+<div ng-show='result'>
+  <p>Code: <strong>{{code}}</strong></p>
+  <pre>{{result | json}}</pre>
+</div>
