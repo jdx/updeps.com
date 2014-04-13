@@ -23,6 +23,7 @@ var express = require('express')
     , config = require('../config')
     , helpers = require('./helpers')
     , logger = require('./logger')
+    , authentication = require('./authentication')
     , routes = require('./routes');
 
 // Create express app
@@ -56,6 +57,8 @@ app.use(logger.requestLogger);
 
 // [Parse POST body as JSON](https://www.npmjs.org/package/body-parser)
 app.use(bodyParser());
+
+app.use(authentication());
 
 // Use [routes.js](routes.html)
 app.use(routes);

@@ -8,14 +8,11 @@
 // ```
 
 exports.github = require('./github');
-
+exports.search = require('./search');
 
 // Show API endpoint index
 exports.index = function(req, res) {
     res.json({
-        // Example:
-        // ```javascript
-        // current_user_url: 'https://api.meanframework.com/users'
-        // ```
+        search_url: 'https://updeps.com/v1/search?q={query}'
     });
 };
