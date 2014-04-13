@@ -36,6 +36,7 @@
     "prettyjson": "^1.0.0",
     "forever": "^0.10.11",
     "prerender-node": "^1.0.1",
-    "jwt-simple": "^0.2.0"
+    "jwt-simple": "^0.2.0",
+    "cors": "^2.2.0"
   }
 }

@@ -24,6 +24,7 @@ var express = require('express')
     , helpers = require('./helpers')
     , logger = require('./logger')
     , authentication = require('./authentication')
+    , cors = require('cors')
     , routes = require('./routes');
 
 // Create express app
@@ -42,6 +43,8 @@ app.use(compression());
 
 // [Use static favicon](https://www.npmjs.org/package/static-favicon)
 app.use(favicon());
+
+app.use(cors());
 
 // Cache assets for 1 year if enabled
 var maxAge = config.assets.cache ? 31536000000 : 0;
