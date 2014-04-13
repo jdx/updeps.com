@@ -8,11 +8,13 @@
 // ```
 
 exports.github = require('./github');
-exports.search = require('./search');
+exports.repositories = require('./repositories');
+exports.npm = require('./npm');
 
 // Show API endpoint index
 exports.index = function(req, res) {
     res.json({
-        search_url: 'https://updeps.com/v1/search?q={query}{&per_page}'
+        repositories_url: 'https://updeps.com/v1/repositories',
+        repositories_search_url: 'https://updeps.com/v1/repositories/search?q={query}{&per_page}'
     });
 };

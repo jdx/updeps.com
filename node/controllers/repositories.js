@@ -1,7 +1,7 @@
 var lodash = require('lodash')
     , request = require('request');
 
-exports.query = function(req, res) {
+exports.search = function(req, res) {
     if (!req.auth || !req.auth.github) { return res.send(401); }
     request.get({
         url: 'https://api.github.com/search/repositories',
@@ -9,6 +9,7 @@ exports.query = function(req, res) {
         qs: {
             q: req.query.q,
             per_page: req.query.per_page || 100,
+            in: 'name',
             access_token: req.auth.github
         },
         headers: { 'User-Agent': 'updeps' }
@@ -28,4 +29,8 @@ exports.query = function(req, res) {
         });
         res.json(repos);
     });
+};
+
+exports.index = function(req, res) {
+    res.json([1, 3]);
 };

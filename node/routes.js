@@ -14,7 +14,10 @@ var api = express.Router();
 // Useful for hypermedia APIs.
 api.get('/', controllers.index);
 
-api.get('/search', controllers.search.query);
+api.get('/repositories', controllers.repositories.index);
+api.get('/repositories/search', controllers.repositories.search);
+
+api.get('/npm/:name', controllers.npm.show);
 
 //
 // ## Custom routes go here.

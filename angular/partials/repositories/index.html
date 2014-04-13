@@ -1,0 +1,10 @@
+<form ng-submit='addFromNPM(name)' class='form-inline'>
+  <div class='form-group'>
+    <input type='text' ng-model='name' class='form-control'>
+  </div>
+  <input type='submit' value='Add from NPM' class='btn btn-default'>
+</form>
+
+<ul>
+  <li ng-repeat='repo in repos'>{{ repo || json}}</li>
+</ul>

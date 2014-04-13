@@ -1,5 +1,5 @@
 {
-  "name": "APPNAME",
+  "name": "updeps",
   "version": "0.0.0",
   "description": "built with the MEAN framework",
   "private": true,
@@ -8,7 +8,7 @@
     "start": "gulp",
     "postinstall": "./node_modules/gulp/bin/gulp.js build"
   },
-  "author": "AUTHORNAME",
+  "author": "@dickeyxxx",
   "engines": {
     "node": "0.10.x"
   },

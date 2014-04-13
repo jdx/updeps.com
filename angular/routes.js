@@ -16,6 +16,10 @@ angular.module('app').
         template: '',
         controller: 'LoginController'
     })
+    .when('/repositories', {
+        templateUrl: '/partials/repositories/index.html',
+        controller: 'RepositoriesController'
+    })
 
     // default route
     .otherwise({redirectTo: '/'});
