@@ -15,5 +15,5 @@ gulp.task('default', ['server', 'build', 'watch']);
 // Builds static assets into `/public`
 gulp.task('build', ['lint', 'vendor', 'partials', 'css', 'scripts']);
 
-// Load the other gulp tasks in `/gulp`
-require('require-all')(__dirname + '/gulp');
+// Load the gulp tasks in `/gulp`
+require('./gulp');
