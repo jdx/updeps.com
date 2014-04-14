@@ -64,7 +64,7 @@ app.use(bodyParser());
 app.use(authentication());
 
 // Use [routes.js](routes.html)
-app.use(routes);
+app.use(routes());
 
 // Use [ejs](http://embeddedjs.com/) for view rendering
 app.engine('html.ejs', require('ejs').renderFile);

@@ -1,15 +1,19 @@
 // # Angular route config
 
 angular.module('app').
-    config(function($routeProvider, $locationProvider) {
+    config(function($routeProvider, $locationProvider, partials) {
 
     // Use push state
     $locationProvider.html5Mode(true);
 
+    function partial(base) {
+      return partials[base] ? '/partials/' + partials[base] : '/partials/' + base;
+    }
+
     // Setup routes
     $routeProvider
     .when('/', {
-        templateUrl: '/partials/home.html',
+        templateUrl: partial('home.html'),
         controller: 'HomeController'
     })
     .when('/login', {
@@ -17,7 +21,7 @@ angular.module('app').
         controller: 'LoginController'
     })
     .when('/repositories', {
-        templateUrl: '/partials/repositories/index.html',
+        templateUrl: partial('repositories/index.html'),
         controller: 'RepositoriesController'
     })
 

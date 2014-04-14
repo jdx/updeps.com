@@ -1,18 +1,29 @@
 // # Node helpers
 
-var _ = require('lodash');
+var _ = require('lodash')
+  , config = require('../config');
 
 // find the rev js asset url
-var js = function(asset) {
-    var manifest = require('../public/js/rev-manifest.json');
-    return '/js/' + manifest[asset];
+exports.js = function(asset) {
+  var manifest = require('../public/js/rev-manifest.json');
+  return '/js/' + manifest[asset];
 };
 
 // find the rev css asset url
-var css = function(asset) {
-    var manifest = require('../public/css/rev-manifest.json');
-    return '/css/' + manifest[asset];
+exports.css = function(asset) {
+  var manifest = require('../public/css/rev-manifest.json');
+  return '/css/' + manifest[asset];
 };
 
-exports.js = _.memoize(js);
-exports.css = _.memoize(css);
+exports.partials = function() {
+  if (config.assets.minify) return require('../public/partials/rev-manifest.json');
+  else return {};
+};
+
+exports.partial = function(base) {
+  if (config.assets.minify) {
+    return '/partials/' + exports.partials()[base];
+  } else {
+    return '/partials/' + base;
+  }
+};

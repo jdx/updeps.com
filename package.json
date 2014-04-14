@@ -37,6 +37,17 @@
     "forever": "^0.10.11",
     "prerender-node": "^1.0.1",
     "jwt-simple": "^0.2.0",
-    "cors": "^2.2.0"
+    "cors": "^2.2.0",
+    "should": "^3.3.0",
+    "q": "^1.0.1",
+    "di": "^2.0.0-pre-9",
+    "nock": "^0.27.3",
+    "require-all": "0.0.8",
+    "gulp-watch": "^0.5.4",
+    "gulp-grep-stream": "0.0.2"
+  },
+  "devDependencies": {
+    "should": "^3.3.0",
+    "gulp-mocha": "^0.4.1"
   }
 }

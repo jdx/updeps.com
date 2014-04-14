@@ -6,5 +6,8 @@
 </form>
 
 <ul>
-  <li ng-repeat='repo in repos'>{{ repo || json}}</li>
+  <li ng-repeat="repo in repos | orderBy:'-_id'">
+  <strong>{{repo.name}}</strong>
+  {{ repo || json}}
+  </li>
 </ul>

@@ -27,7 +27,9 @@
         ], function() {
           angular.bootstrap(document, ['app']);
         });
-        angular.module('config', []).constant('config', <%- JSON.stringify(config.public) %>);
+        angular.module('config', [])
+        .constant('config', <%- JSON.stringify(config.public) %>)
+        .constant('partials', <%- JSON.stringify(helpers.partials()) %>);
     </script>
     <title><%- config.app %></title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -39,11 +41,11 @@
     <% } %>
   </head>
   <body ng-cloak>
-    <div ng-include="'/partials/header.html'"></div>
+    <div ng-include="'<%- helpers.partial('header.html') %>'"></div>
     <div class='container'>
       <div ng-view></div>
     </div>
-    <div ng-include="'/partials/footer.html'"></div>
+    <div ng-include="'<%- helpers.partial('footer.html') %>'"></div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
   </body>
 </html>
