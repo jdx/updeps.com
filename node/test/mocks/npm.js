@@ -4,7 +4,7 @@ var di = require('di')
 var MockNpm = function() {};
 
 MockNpm.prototype.findByName = function(name, cb) {
-  cb(null, {name: name});
+  cb(null, {name: name, 'dist-tags': { latest: '1.0.0' }});
 };
 
 di.annotate(MockNpm, new di.Provide(NpmService));
