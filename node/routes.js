@@ -5,18 +5,13 @@
 
 var di = require('di')
   , express = require('express')
-  , NpmController = require('./controllers/npm')
-  , RepositoriesController = require('./controllers/repositories')
-  , GithubController = require('./controllers/github')
   , _ = require('lodash');
 
 // Load controllers
 var injector = new di.Injector([]);
-var controllers = {
-  npm: injector.get(NpmController),
-  repositories: injector.get(RepositoriesController),
-  github: injector.get(GithubController)
-};
+var controllers = _.mapValues(require('require-all')(__dirname + '/controllers'), function(c) {
+  return injector.get(c);
+});
 
 module.exports = function() {
   var api = express.Router();
@@ -34,7 +29,9 @@ module.exports = function() {
   api.get('/repositories/search', controllers.repositories.search);
   api.get('/repositories/:author/:repo', controllers.repositories.show);
 
-  api.get('/npm/:name', controllers.npm.lookup.bind(controllers.npm));
+  api.post('/visits', controllers.visits.create);
+
+  api.get('/npm/:name', controllers.npm.lookup);
 
   //
   // ## Custom routes go here.

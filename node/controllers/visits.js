@@ -2,14 +2,14 @@ var di = require('di')
   , Repository = require('../models/repository')
   , NpmService = require('../services/npm');
 
-
-var NpmController = function(npmService) {
+var VisitsController = function(NpmService) {
   return {
-    lookup: function(req, res, next) {
-      npmService.findByName(req.params.name, function(err, pkg) {
-        if (err) return next(err);
-        if (!pkg) return res.send(404);
+    create: function(req, res) {
+      res.send(201);
+      var name = req.body.repo.split('/', 2)[1];
+      NpmService.findByName(name, function(err, pkg) {
         var github;
+        if (!pkg) return;
         if (pkg.repository) {
           github = pkg.repository.url.split('github.com/').pop().split('.git', 1)[0];
         }
@@ -18,14 +18,14 @@ var NpmController = function(npmService) {
           github: github,
           version: pkg['dist-tags'].latest
         }, {upsert: true}, function(err) {
-          if (err) return next(err);
-          res.json(pkg);
+          if (err) throw err;
+          console.log('added', pkg.name);
         });
       });
     }
   };
 };
 
-di.annotate(NpmController, new di.Inject(NpmService));
+di.annotate(VisitsController, new di.Inject(NpmService));
 
-module.exports = NpmController;
+module.exports = VisitsController;
